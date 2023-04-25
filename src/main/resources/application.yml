@@ -1,0 +1,36 @@
+# server
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+
+# viewresolver
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/blog/
+      suffix: .jsp
+
+# dataSource
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/./blog
+    username: sa
+    password: 1
+    
+  # JPA
+  jpa:
+    open-in-view: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: create
+      # use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        format_sql: true
+    
