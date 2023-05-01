@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssamz.blog.domain.User;
 
 @RestController
-public class RestReqestController {
+public class RestRequestController {
 	@GetMapping("/blog")
 	public User httpGet() {
 		User user = User.builder()
