@@ -20,6 +20,7 @@ public class UserService {
 		return false;
 	}
 	
+	@Transactional(readOnly = true)
 	public User getUser(User user) {
 		User foundUser = userRepository.findById(user.getId());
 		

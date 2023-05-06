@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class BlogWebMvcConfigurer implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AuthenticationInterceptor()).addPathPatterns("/");
+		registry.addInterceptor(new AuthenticationInterceptor()).addPathPatterns("/", "/post/**");
 	}
 }

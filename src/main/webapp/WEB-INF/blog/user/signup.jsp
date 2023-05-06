@@ -3,8 +3,6 @@
 
 <%@ include file="../layout/header.jsp" %>
 
-<script src="/js/user.js"></script>
-
 <div class="container mt-3">
 	<form>
 		<div class="mt-3 mb-3">
@@ -24,3 +22,5 @@
 </div>
 
 <%@ include file="../layout/footer.jsp" %>
+
+<script src="/js/signup.js"></script>
