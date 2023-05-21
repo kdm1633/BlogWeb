@@ -1,31 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<!-- summernote css/js -->
-<link href="/webjars/summernote/summernote-bs4.css" rel="stylesheet">
-<script src="/webjars/summernote/summernote-bs4.min.js"></script>
+	<title>Blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- summernote css/js -->
+	<link href="/webjars/summernote/summernote-bs4.css" rel="stylesheet">
+	<script src="/webjars/summernote/summernote-bs4.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/post/list">Main</a>
-		<button class="navbar-toggler" type="button"
+		<button type="button" class="navbar-toggler" 
 			data-bs-toggle="collapse" data-bs-target="#mynavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="mynavbar">
 			<c:choose>
-				<c:when test="${sessionScope.loginUser == null }">
+				<c:when test="${sessionScope.loginUser == null}">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 					<li class="nav-item"><a class="nav-link" href="/signup">Signup</a></li>

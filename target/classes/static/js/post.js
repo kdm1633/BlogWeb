@@ -10,6 +10,7 @@ let postObject = {
 			this.delete();
 		});
 	},
+	
 	postup() {
 		alert("Postup requested");
 		
@@ -23,20 +24,29 @@ let postObject = {
 			url: "/post/postup",
 			data: JSON.stringify(post),
 			contentType: "application/json; charset=UTF-8"
-		}).done(function(response) {
-			let message = response["data"];
-			alert(message);
-			location = "/post/list";
-		}).fail(function(error) {
+		}).done((response) => {
+			let status = response["status"];
+
+			if (status == 200) {
+				let message = response["data"];
+				alert(message);
+				location = "/post/list";
+			}
+			else {
+				let errors = response["data"];
+				alert(errors);
+			}
+		}).fail((error) => {
 			let errorMessage = error["data"];
 			alert("Error: " + errorMessage);
 		});
 	},
+	
 	edit() {
 		alert("Post-editing requested");
 		
 		let post = {
-			id: $('#id').val(),
+			num: $('#num').val(),
 			title: $('#title').val(),
 			content: $('#content').val()
 		}
@@ -46,30 +56,30 @@ let postObject = {
 			url: "/post/edit",
 			data: JSON.stringify(post),
 			contentType: "application/json; charset=UTF-8"
-		}).done(function(response) {
+		}).done((response) => {
 			let message = response["data"];
 			alert(message);
 			location = "/post/list";
-		}).fail(function(error) {
+		}).fail((error) => {
 			let errorMessage = error["data"];
 			alert("Error: " + errorMessage);
 		});
 	},
+	
 	delete() {
-		alert("Post-editing requested");
+		alert("Post-deleting requested");
 		
-		let id = $('#id').val();
+		let postNum = $('#postNum').val();
 		
 		$.ajax({
 			method: "delete",
-			url: "/post/delete/" + id,
-			data: JSON.stringify(post),
+			url: `/post/${postNum}`,
 			contentType: "application/json; charset=UTF-8"
-		}).done(function(response) {
+		}).done((response) => {
 			let message = response["data"];
 			alert(message);
 			location = "/post/list";
-		}).fail(function(error) {
+		}).fail((error) => {
 			let errorMessage = error["data"];
 			alert("Error: " + errorMessage);
 		});

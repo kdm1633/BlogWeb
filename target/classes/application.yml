@@ -13,7 +13,7 @@ spring:
       prefix: /WEB-INF/blog/
       suffix: .jsp
 
-# dataSource
+  # dataSource
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/./blog
@@ -33,4 +33,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    

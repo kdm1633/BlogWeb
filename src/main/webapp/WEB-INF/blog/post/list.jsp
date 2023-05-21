@@ -10,13 +10,13 @@
 	<div class="card mb-2">
 		<div class="card-body">
 			<h4 class="card-title">${post.title}</h4><br>
-			<a href="/post/${post.id}" class="btn btn-secondary">Detail</a>
+			<a href="/post/${post.num}" class="btn btn-secondary">Detail</a>
 		</div>
 	</div>
 	</c:forEach>
 	<ul class="pagination justify-content-center">
     <li class="page-item <c:if test="${postList.first}">disabled</c:if>"><a class="page-link" href="?page=${postList.number - 1}">Previous</a></li>
-    <c:forEach begin="0" end="${postlist.totalPages + 1}" step="1" var="i">
+    <c:forEach begin="0" end="${postList.totalPages-1}" var="i">
     <c:set var="isCurPage" value="${postList.number == i}"/>
     <li class="page-item ${isCurPage ? 'active' : ''}">
     	<${isCurPage ? 'span' : 'a'} class="page-link" href="?page=${i}">${i+1}</a>

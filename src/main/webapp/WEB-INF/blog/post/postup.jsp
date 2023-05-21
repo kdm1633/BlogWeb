@@ -14,7 +14,7 @@
 			<textarea rows="5" id="content" class="form-control"></textarea>
 		</div>
 	</form>
-	<button id="btn-postup" class="btn btn-secondary">Postup</button>
+	<button id="btn-postup" class="btn btn-secondary float-end">Postup</button>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>

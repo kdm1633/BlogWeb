@@ -22,8 +22,8 @@ public class PostService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Post getPost(int id) {
-		return postRepository.findById(id).get();
+	public Post getPost(int num) {
+		return postRepository.findByNum(num).get();
 	}
 	
 	@Transactional(readOnly = true)
@@ -38,14 +38,13 @@ public class PostService {
 	
 	@Transactional
 	public void editPost(Post post) {
-		System.out.println("123");
-		Post foundPost = postRepository.findById(post.getId()).get();
+		Post foundPost = postRepository.findById(post.getNum()).get();
 		foundPost.setTitle(post.getTitle());
 		foundPost.setContent(post.getContent());
 	}
 	
 	@Transactional
-	public void deletePost(int id) {
-		postRepository.deleteById(id);
+	public void deletePost(int num) {
+		postRepository.deleteByNum(num);
 	}
 }

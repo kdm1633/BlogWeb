@@ -5,7 +5,7 @@
 
 <div class="container mt-3">
 	<form>
-		<input type="hidden" id="id" value="${post.id}">
+		<input type="hidden" id="num" value="${post.num}">
 		<div class="mt-3 mb-3">
 			<label for="title">Title</label>
 			<input type="text" id="title" class="form-control" name="title" value="${post.title}">
