@@ -23,9 +23,6 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private ModelMapper modelMapper;
-	
 	@GetMapping("/login")
 	public String login() {
 		return "system/login";
