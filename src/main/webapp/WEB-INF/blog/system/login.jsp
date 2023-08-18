@@ -3,20 +3,20 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-<script src="/js/login.js"></script>
+<!-- <script src="/js/login.js"></script> -->
 
 <div class="container mt-3">
-	<form>
+	<form method="post" action="/login">
 		<div class="mb-3 mt-3">
-			<label for="id"><spring:message code="user.login.form.userid"/>:</label>
-			<input type="text" class="form-control" id="id" name="id" placeholder="Enter userid">
+			<label for="username"><spring:message code="user.login.form.username"/>:</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
 		</div>
 		<div class="mb-3">
 			<label for="password"><spring:message code="user.login.form.password"/>:</label>
 			<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
 		</div>
+		<button id="btn-login" class="btn btn-secondary"><spring:message code="user.login.form.loginBtn"/></button>
 	</form>
-	<button id="btn-login" class="btn btn-secondary"><spring:message code="user.login.form.loginBtn"/></button>
 </div>
 
 <%@ include file="../layout/footer.jsp"%>

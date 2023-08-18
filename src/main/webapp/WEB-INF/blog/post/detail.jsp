@@ -13,7 +13,7 @@
 	</div>
 	<div class="my-4">
 		Post number: <span><i>${post.num}</i></span><br>
-		Writer: ${post.user.id}<br>
+		Writer: ${post.user.username}<br>
 	</div>
 	<hr>
 	<div class="mb-3">
@@ -38,7 +38,7 @@
 			<tbody>
 				<c:forEach var="comment" items="${post.commentList}">
 				<tr>
-					<td>${comment.user.id}</td>
+					<td>${comment.user.username}</td>
 					<td>${comment.content}</td>
 					<td>
 						<c:if test="${comment.user.num!=null && loginUser.num==comment.user.num}">

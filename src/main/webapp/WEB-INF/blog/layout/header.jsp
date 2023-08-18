@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal"/>
+</sec:authorize>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,14 +23,14 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/post/list">Main</a>
+		<a class="navbar-brand" href="/">Main</a>
 		<button type="button" class="navbar-toggler" 
 			data-bs-toggle="collapse" data-bs-target="#mynavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="mynavbar">
 			<c:choose>
-				<c:when test="${sessionScope.loginUser == null}">
+				<c:when test="${principal == null}">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 					<li class="nav-item"><a class="nav-link" href="/signup">Signup</a></li>

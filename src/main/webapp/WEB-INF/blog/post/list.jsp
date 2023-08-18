@@ -5,7 +5,7 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container-fluid mt-3">
-	<c:if test="${!empty postList}">
+<c:if test="${!empty postList}">
 	<c:forEach var="post" items="${postList.content}">
 	<div class="card mb-2">
 		<div class="card-body">
@@ -14,17 +14,22 @@
 		</div>
 	</div>
 	</c:forEach>
+	
+	<c:if test="postList.totalPages">
 	<ul class="pagination justify-content-center">
     <li class="page-item <c:if test="${postList.first}">disabled</c:if>"><a class="page-link" href="?page=${postList.number - 1}">Previous</a></li>
+    
     <c:forEach begin="0" end="${postList.totalPages-1}" var="i">
     <c:set var="isCurPage" value="${postList.number == i}"/>
     <li class="page-item ${isCurPage ? 'active' : ''}">
     	<${isCurPage ? 'span' : 'a'} class="page-link" href="?page=${i}">${i+1}</a>
     </li>
     </c:forEach>
+    
     <li class="page-item <c:if test="${postList.last}">disabled</c:if>"><a class="page-link" href="?page=${postList.number + 1}">Next</a></li>
   </ul>
-	</c:if>
+  </c:if>
+</c:if>
 </div>
 
 <%@ include file="../layout/footer.jsp" %>

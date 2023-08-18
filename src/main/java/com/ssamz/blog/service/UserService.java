@@ -1,6 +1,7 @@
 package com.ssamz.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +14,18 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public boolean existentId(User user) {
-		if (userRepository.existsById(user.getId()))
+	@Autowired
+	PasswordEncoder pwEncoder;
+	
+	@Transactional
+	public void signup(User user) {
+		user.setPassword(pwEncoder.encode(user.getPassword()));
+		user.setRole(RoleType.USER);
+		userRepository.save(user);
+	}
+	
+	public boolean hasUsername(User user) {
+		if (userRepository.existsByUsername(user.getUsername()))
 			return true;
 		
 		return false;
@@ -22,14 +33,18 @@ public class UserService {
 	
 	@Transactional(readOnly = true)
 	public User getUser(User user) {
-		User foundUser = userRepository.findById(user.getId());
+		User foundUser = userRepository.findByUsername(user.getUsername()).get();
 		
 		return foundUser;
 	}
 	
 	@Transactional
-	public void signup(User user) {
-		user.setRole(RoleType.USER);
-		userRepository.save(user);
+	public User updateUser(User user) {
+		User foundUser = userRepository.findByNum(user.getNum()).get();
+		foundUser.setUsername(user.getUsername());
+		if (!user.getPassword().isEmpty()) foundUser.setPassword(pwEncoder.encode(user.getPassword()));
+		foundUser.setEmail(user.getEmail());
+		
+		return foundUser;
 	}
 }

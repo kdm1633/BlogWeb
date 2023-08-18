@@ -17,7 +17,7 @@ public class RestRequestController {
 	public User httpGet() {
 		User user = User.builder()
 				.num(1)
-				.id("gurum")
+				.username("gurum")
 				.password("222")
 				.email("gurum@gmail.com")
 				.build();

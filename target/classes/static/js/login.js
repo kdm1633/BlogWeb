@@ -11,15 +11,17 @@ $(document).ready(function() {
 	});
 });
 
-/*jQuery(function($) {
+/*
+jQuery(function($) {
 	$('#btn-login').click(function(event) {
 		login();
 	});
 });
 */
+
 function login() {
 	let loginInfo = {
-		id: $('#id').val(),
+		username: $('#username').val(),
 		password: $('#password').val(),
 	}
 	

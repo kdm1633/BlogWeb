@@ -11,9 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-	@NotBlank(message = "The user ID is blank.")
-	@Size(min = 1, max = 20, message = "The user ID must be between 1 and 20 characters long.")
-	private String userid;
+	@NotBlank(message = "The username is blank.")
+	@Size(min = 1, max = 20, message = "The username must be between 1 and 20 characters long.")
+	private String username;
+	
+	@NotBlank(message = "The password is blank.")
+	@Size(min = 1, max = 20, message = "The password must be between 8 and 20 characters long.")
+	private String password;
 	
 	@NotBlank(message = "The email is blank.")
 	@Email(message = "The email format is invalid.")

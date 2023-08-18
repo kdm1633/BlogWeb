@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssamz.blog.domain.Post;
 import com.ssamz.blog.domain.User;
 import com.ssamz.blog.dto.ResponseDto;
+import com.ssamz.blog.security.UserDetailsImpl;
 import com.ssamz.blog.service.PostService;
 import com.ssamz.dto.PostDto;
 
@@ -40,17 +42,24 @@ public class PostController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@GetMapping("/list")
+	public String getPostList(Model model, @PageableDefault(size = 3, sort = "num", direction = Direction.DESC) Pageable pageable) {
+		model.addAttribute("postList", postService.getPostList(pageable));
+		
+		return "post/list";
+	}
+	
 	@GetMapping("/postup")
 	public String postup() {
 		return "post/postup";
 	}
 	
 	@PostMapping("/postup")
-	public @ResponseBody ResponseDto<String> postup(@Valid @RequestBody PostDto postDto, BindingResult bindingResult, HttpSession session) {
+	public @ResponseBody ResponseDto<String> postup(@Valid @RequestBody PostDto postDto, BindingResult bindingResult, HttpSession session, @AuthenticationPrincipal UserDetailsImpl principal) {
 		Post post = modelMapper.map(postDto, Post.class);
 		
-		User loginUser = (User)session.getAttribute("loginUser");
-		post.setUser(loginUser);
+//		User principal = (User)session.getAttribute("principal");
+		post.setUser(principal.getUser());
 		postService.postup(post);
 		
 		return new ResponseDto<String>(HttpStatus.OK.value(), "New post registered.");
@@ -63,12 +72,6 @@ public class PostController {
 		return "post/detail";
 	}
 	
-	@GetMapping("/list")
-	public String getPostList(Model model, @PageableDefault(size = 3, sort = "num", direction = Direction.DESC) Pageable pageable) {
-		model.addAttribute("postList", postService.getPostList(pageable));
-		
-		return "post/list";
-	}
 	
 	@GetMapping("/edit/{num}")
 	public String editPost(@PathVariable int num, Model model) {

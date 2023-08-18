@@ -17,7 +17,7 @@ class UserDaoTest {
 	@Test
 	void getUserListTest() {
 		User user = User.builder()
-				.id("test")
+				.username("test")
 				.password("test123")
 				.email("test@gmail.com")
 				.build();

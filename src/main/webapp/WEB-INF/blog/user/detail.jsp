@@ -5,9 +5,10 @@
 
 <div class="container mt-3">
 	<form>
+		<input type="hidden" id="num" value="${principal.user.num}">
 		<div class="mt-3 mb-3">
 			<label for="username">Username:</label>
-			<input type="text" id="username" class="form-control" name="username" placeholder="Enter username">
+			<input type="text" id="username" class="form-control" name="username" value="${principal.user.username}" placeholder="Enter username">
 		</div>
 		<div class="mb-3">
 			<label for="password">Password:</label>
@@ -15,12 +16,12 @@
 		</div>
 		<div class="mb-3">
 			<label for="email">Email:</label>
-			<input type="text" id="email" class="form-control" name="email" placeholder="Enter email">
+			<input type="text" id="email" class="form-control" name="email" value="${principal.user.email}" placeholder="Enter email">
 		</div>
 	</form>
-	<button id="btn-signup" class="btn btn-secondary">Signup</button>
+	<button id="btn-update" class="btn btn-secondary">Update</button>
 </div>
 
-<%@ include file="../layout/footer.jsp" %>
-
 <script src="/js/user.js"></script>
+
+<%@ include file="../layout/footer.jsp" %>

@@ -16,7 +16,7 @@ import com.ssamz.blog.dto.ResponseDto;
 @Component
 @Aspect
 public class ValidationCheckAdvice {
-	@Around("execution(* com.ssamz.*.controller.*Controller.*(..)) && args(.., bindingResult, *))")
+	@Around("execution(* com.ssamz.*.controller.*Controller.*(..)) && (args(*, bindingResult, ..))")
 	public Object checkValidation(ProceedingJoinPoint pjp, BindingResult bindingResult) throws Throwable {
 		if (bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();

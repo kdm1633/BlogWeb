@@ -10,6 +10,6 @@ import com.ssamz.blog.domain.User;
 @Repository	// It is possible to omit @Repository.
 public interface UserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByNum(int num);
-	boolean existsById(String id);
-	User findById(String id);
+	boolean existsByUsername(String username);
+	Optional<User> findByUsername(String username);
 }
