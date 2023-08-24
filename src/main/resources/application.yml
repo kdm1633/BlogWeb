@@ -29,7 +29,12 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
-      # use-new-id-generator-mappings: false
+      # use-new-id-generator-mappings: false  // deprecate
     properties:
       hibernate:
         format_sql: true
+
+# password        
+kakao:
+  default:
+    password: kakao123

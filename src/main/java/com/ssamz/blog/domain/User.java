@@ -43,4 +43,7 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp timeStamp;
+	
+	@Enumerated(EnumType.STRING)
+	private OauthType oauth;
 }

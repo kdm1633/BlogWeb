@@ -16,6 +16,7 @@
 			<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
 		</div>
 		<button id="btn-login" class="btn btn-secondary"><spring:message code="user.login.form.loginBtn"/></button>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=6d081046584937b4c5ebbb5add56be18&redirect_uri=http://localhost:8080/oauth/kakao&response_type=code"><img height="40px" src="/image/kakao_login_btn.png"></a>
 	</form>
 </div>
 

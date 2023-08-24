@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssamz.blog.domain.OauthType;
 import com.ssamz.blog.domain.RoleType;
 import com.ssamz.blog.domain.User;
 import com.ssamz.blog.persistence.UserRepository;
@@ -21,6 +22,7 @@ public class UserService {
 	public void signup(User user) {
 		user.setPassword(pwEncoder.encode(user.getPassword()));
 		user.setRole(RoleType.USER);
+		if (user.getOauth() == null) user.setOauth(OauthType.BLOG);
 		userRepository.save(user);
 	}
 	
@@ -33,7 +35,7 @@ public class UserService {
 	
 	@Transactional(readOnly = true)
 	public User getUser(User user) {
-		User foundUser = userRepository.findByUsername(user.getUsername()).get();
+		User foundUser = userRepository.findByUsername(user.getUsername()).orElse(null);
 		
 		return foundUser;
 	}
