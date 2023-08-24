@@ -32,7 +32,6 @@ public class BlogWebSecurityConfiguration {
 		AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 		authenticationManagerBuilder.userDetailsService(userDetailsServiceImpl);
 		
-		
 		return authenticationManagerBuilder.build();
 	}
 	
@@ -44,9 +43,6 @@ public class BlogWebSecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.sessionManagement((sessionManagement) -> sessionManagement
-				.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-			)
 			.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/", "/webjars/**", "/css/**", "/js/**", "/image/**", "/oauth/**").permitAll()
