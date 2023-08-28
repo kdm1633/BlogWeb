@@ -2,21 +2,40 @@ package com.ssamz.blog.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.ssamz.blog.domain.User;
 
 import lombok.Data;
 
 @Data
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails, OAuth2User {
 	private static final long serialVersionUID = 1L;
 	private User user;
 	
+	private Map<String, Object> attributes;
+	
 	public UserDetailsImpl(User user) {
 		this.user = user;
+	}
+	
+	public UserDetailsImpl(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
+	}
+	
+	@Override
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+	
+	@Override
+	public String getName() {
+		return null;
 	}
 	
 	@Override

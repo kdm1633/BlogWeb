@@ -33,8 +33,21 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 104028921535-c5heslj4q9bgbeg7nk3cfir572qfotbo.apps.googleusercontent.com
+            client-secret: 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
+            scope: email, profile
 
 # password        
 kakao:
   default:
     password: kakao123
+
+google:
+  default:
+    password: google123

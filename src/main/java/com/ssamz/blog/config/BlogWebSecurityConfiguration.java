@@ -7,11 +7,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.ssamz.blog.security.OAuth2UserDetailsServiceImpl;
 import com.ssamz.blog.security.UserDetailsServiceImpl;
 
 import jakarta.servlet.DispatcherType;
@@ -20,12 +20,19 @@ import jakarta.servlet.DispatcherType;
 @EnableWebSecurity
 public class BlogWebSecurityConfiguration {
 	@Autowired
-	UserDetailsServiceImpl userDetailsServiceImpl;
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	};
+	@Autowired
+	private OAuth2UserDetailsServiceImpl auth2UserDetailsServiceImpl;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+//	Circular references (related to OAuth2UserDetailsServiceImpl)
+//	@Bean
+//	PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	};
 	
 	@Bean
 	AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -59,6 +66,9 @@ public class BlogWebSecurityConfiguration {
 			.logout((logout) -> logout
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/")
+			)
+			.oauth2Login((oauth2Login) -> oauth2Login
+				.loginPage("/login")
 			);
 		
 		return http.build();

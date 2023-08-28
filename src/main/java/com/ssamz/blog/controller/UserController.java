@@ -33,6 +33,9 @@ public class UserController {
 	@Value("${kakao.default.password}")
 	private String kakaoPassword;
 	
+	@Value("${google.default.password}")
+	private String googlePassword;
+	
 	@GetMapping("/signup")
 	public String signup() {
 		return "user/signup";
@@ -65,6 +68,8 @@ public class UserController {
 	public @ResponseBody ResponseDto<String> updateUser(@RequestBody User user, @AuthenticationPrincipal UserDetailsImpl principal) {
 		if (principal.getUser().getOauth().equals(OauthType.KAKAO))
 			user.setPassword(kakaoPassword);
+		else if (principal.getUser().getOauth().equals(OauthType.GOOGLE))
+			user.setPassword(googlePassword);
 		
 		principal.setUser(userService.updateUser(user));
 		
